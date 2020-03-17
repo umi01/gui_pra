@@ -74,7 +74,7 @@ class MainWindow():
                 self.main.bind("<Key-{}>".format(self.kyboard_str[i]), self.labeling(i))
     def set_message(self):
         self.message_image_index.set("{}/{}".format(str(self.current_image_num+1),str(self.images_num)))
-        self.message_image_class.set("{}".format(self.get_class_name(self.images_list[self.current_image_num])))
+        self.message_image_class.set("{} {}".format(self.get_class_name(self.images_list[self.current_image_num]), self.get_class_name(self.images_list[self.current_image_num])))
     def set_image(self,e=None):
         img = Image.open(os.path.join(self.images_dir,self.images_list[self.current_image_num]))
         img = img.resize((self.image_width,self.image_height), Image.LANCZOS)

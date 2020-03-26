@@ -3,11 +3,12 @@ from tkinter import font
 from PIL import Image, ImageTk, ImageOps
 import os
 import json
+import pdb
 #----------------------------------------------------------------------
 # 設定項目
 images_dir = "./images" # 画像フォルダのパス
 json_path  = "./result.json" # 出力(json)ファイルのパス
-classes = ["犬","猫","鳥","猿","羊","狼","狸","不明"] # 分類するクラス
+classes = ["Daker", "Lighter", "Asian", "Male", "Female"] # 分類するクラス
 image_width = 800 # 表示画像の幅
 image_height = 450 # 表示画像の高さ
 #----------------------------------------------------------------------
@@ -111,9 +112,11 @@ class MainWindow():
             self.set_message()
         return x
     def load_json(self):
-        data = {}
+        data ={}
+        meta = [0,0,0,0,0]
         try:
             data = json.load(open(self.json_path,'r'))
+            print("loadunnti")
         except json.JSONDecodeError as e:
             pass
         except FileNotFoundError as e:
@@ -124,6 +127,7 @@ class MainWindow():
         data = self.load_json()
         data[img_path] = class_num
         json.dump(data, open(self.json_path,'w'),indent=4)
+        print("updataunnti")
 #----------------------------------------------------------------------
 
 root = Tk()

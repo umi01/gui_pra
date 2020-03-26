@@ -1,5 +1,23 @@
 {
-    "sample_bird.jpg": 2,
-    "sample_cat.jpg": 1,
-    "sample_dog.jpg": 0
+    "sample_bird.jpg": [
+        1,
+        0,
+        0,
+        0,
+        1
+    ],
+    "sample_cat.jpg": [
+        0,
+        1,
+        0,
+        0,
+        1
+    ],
+    "sample_dog.jpg": [
+        0,
+        1,
+        0,
+        0,
+        1
+    ]
 }

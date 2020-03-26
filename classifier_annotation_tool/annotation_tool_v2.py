@@ -3,11 +3,12 @@ from tkinter import font
 from PIL import Image, ImageTk, ImageOps
 import os
 import json
+import sys
 #----------------------------------------------------------------------
 # 設定項目
 images_dir = "./images" # 画像フォルダのパス
 json_path  = "./result.json" # 出力(json)ファイルのパス
-classes = ["犬","猫"] # 分類するクラス
+classes = ["Darker","Lighter", "Asian", "Male", "Female"] # 分類するクラス
 image_width = 800 # 表示画像の幅
 image_height = 450 # 表示画像の高さ
 #----------------------------------------------------------------------
@@ -81,7 +82,7 @@ class MainWindow():
     def get_class_name(self, img_path):
         data = self.load_json()
         if img_path in data:
-            return self.classes[data[img_path]]
+            return [c for l, c in zip(data[img_path], self.classes) if l == 1]
         else:
             return "No Label"
     def onNextButton(self,e=None):
@@ -120,7 +121,17 @@ class MainWindow():
         return data
     def update_json(self,img_path, class_num):
         data = self.load_json()
-        data[img_path] = class_num
+        #data[img_path] の有無
+        if img_path in data:
+            if data[img_path][class_num] == 1:
+                data[img_path][class_num] = 0
+            else:
+                data[img_path][class_num] = 1
+        else:
+            data[img_path] = [0,0,0,0,0]
+            data[img_path][class_num] = 1
+    
+        #data[img_path] = class_num
         json.dump(data, open(self.json_path,'w'),indent=4)
 #----------------------------------------------------------------------
 

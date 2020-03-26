@@ -113,7 +113,6 @@ class MainWindow():
         return x
     def load_json(self):
         data ={}
-        meta = [0,0,0,0,0]
         try:
             data = json.load(open(self.json_path,'r'))
             print("loadunnti")
@@ -126,6 +125,7 @@ class MainWindow():
     def update_json(self,img_path, class_num):
         data = self.load_json()
         data[img_path] = class_num
+        # if len(data[image_path]) = 2
         json.dump(data, open(self.json_path,'w'),indent=4)
         print("updataunnti")
 #----------------------------------------------------------------------
